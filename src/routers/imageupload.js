@@ -13,28 +13,49 @@ const storage = new Storage({
 
 const bucket = storage.bucket(admin.app().options.storageBucket);
 
-router.post("/upload", upload.single("image"), async (req, res) => {
+router.post("/upload/:postId", upload.single("image"), async (req, res) => {
   const { file } = req;
+  const { postId } = req.params;
 
-    if (!file) {
+  if (!file) {
     return res.status(400).send("No file uploaded.");
   }
 
-  const destination = "images/" + file.originalname;
+  const destination = `images/${postId}_${file.originalname}`;
 
   try {
-    await bucket.upload(file.path, {
-      destination: destination,
-      metadata: {
-        contentType: file.mimetype,
-      },
+    // Check if an image with the same postId exists
+    const existingFiles = await bucket.getFiles({
+      prefix: `images/${postId}_`,
     });
-    
+
+    if (existingFiles[0].length > 0) {
+      // If an image with the same postId exists, update it
+      const existingFile = existingFiles[0][0];
+      await existingFile.delete(); // Delete existing image
+
+      // Upload the new image
+      await bucket.upload(file.path, {
+        destination: destination,
+        metadata: {
+          contentType: file.mimetype,
+        },
+      });
+    } else {
+      // If no image with the same postId exists, create a new entry
+      await bucket.upload(file.path, {
+        destination: destination,
+        metadata: {
+          contentType: file.mimetype,
+        },
+      });
+    }
+
     res.status(200).send("Image uploaded successfully.");
   } catch (error) {
-    
+    console.error(error);
     res.status(500).send("Error uploading image.");
-  }
+  } 
 });
 
 module.exports = router;
