@@ -7,12 +7,13 @@ const db = admin.firestore()
 
 router.post('/create', async (req, res) => {
     try {
-        const {title, content, author} = req.body
+        const {title, content, author, uid} = req.body
         timestamp = admin.firestore.FieldValue.serverTimestamp()
         const blogData = {
             title: title,
             content: content,
             author: author,
+            uid: uid,
             timestamp: timestamp
         };
         const response = await db.collection("blogs").add(blogData);
