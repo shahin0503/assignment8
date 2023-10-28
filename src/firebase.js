@@ -3,7 +3,8 @@ const credentials = require('../key.json')
 
 admin.initializeApp({
     credential: admin.credential.cert(credentials),
-    databaseURL: "http://assignment8-ba343-default-rtdb.asia-southeast1.firebasedatabase.app"
+    databaseURL: 'https://assignment8-ba343-default-rtdb.asia-southeast1.firebasedatabase.app',
+    storageBucket: 'gs://assignment8-ba343.appspot.com/'
 })
 
 module.exports = admin
