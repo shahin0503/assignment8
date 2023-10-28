@@ -26,4 +26,26 @@ router.post('/createComment', async (req, res) => {
     }
 })
 
+router.get('/readComments/:postId', async (req, res) => {
+    try {
+        const postId = req.params.postId;
+
+        const commentsRef = db.ref('comments');
+
+        const query = commentsRef.orderByChild('postId').equalTo(postId);
+        const snapshot = await query.once('value');
+
+        const comments = [];
+        snapshot.forEach(childSnapshot => {
+            const comment = childSnapshot.val();
+            comments.push(comment);
+        });
+
+        res.status(200).json(comments);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("An error occurred while fetching comments");
+    }
+});
+
 module.exports = router
