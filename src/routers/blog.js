@@ -20,5 +20,18 @@ router.post('/create', async (req, res) => {
     }
 })
 
+router.get('/read/all', async (req, res) => {
+    try {
+        const blogsRef = db.collection("blogs");
+        const response = await blogsRef.get();
+        let responseArr = [];
+        response.forEach(doc => {
+            responseArr.push(doc.data())
+        });
+        res.send(responseArr)
+    } catch (error) {
+        res.send(error)
+    }
+})
 
 module.exports = router
