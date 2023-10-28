@@ -4,16 +4,12 @@ const router = new express.Router()
 
 router.post('/signup', async (req, res) => {
     try {
-        const user = {
-            email: req.body.email,
-            password: req.body.password
+        const {email, password} = req.body
+        const userData = {
+            email: email,
+            password: password
         }
-        const userResponse = await admin.auth().createUser({
-            email: user.email,
-            password: user.password,
-            emailVerified: false,
-            disabled: false
-        });
+        const userResponse = await admin.auth().createUser(user);
         res.json(userResponse)
     } catch (error) {
         res.status(500).json({ error: 'Error creating user' });
