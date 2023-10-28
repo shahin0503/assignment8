@@ -5,7 +5,7 @@ const router = new express.Router()
 const db = admin.firestore()
 
 
-router.post('/create', async (req, res) => {
+router.post('/blog', async (req, res) => {
     try {
         const {title, content, author, uid} = req.body
         timestamp = admin.firestore.FieldValue.serverTimestamp()
@@ -23,7 +23,7 @@ router.post('/create', async (req, res) => {
     }
 })
 
-router.get('/read/all', async (req, res) => {
+router.get('/blog', async (req, res) => {
     try {
         const blogsRef = db.collection("blogs");
         const response = await blogsRef.get();
