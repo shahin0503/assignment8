@@ -13,6 +13,7 @@ const storage = new Storage({
 
 const bucket = storage.bucket(admin.app().options.storageBucket);
 
+// Add or update an image to a blog
 router.post("/upload/:postId", upload.single("image"), async (req, res) => {
   const { file } = req;
   const { postId } = req.params;
