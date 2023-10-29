@@ -31,14 +31,15 @@ npm start
 The server will start, and you can access the API endpoints locally at http://localhost:8080.
 
 ## API Endpoints
-| URL                   | HTTP Method | Description                         |
-|-----------------------|-------------|-------------------------------------|
-| /api/signup           | POST        | User signup endpoint                |
-| /api/login            | POST        | User login endpoint                 |
-| /api/blog             | POST        | Create a new blog post              |
-| /api/blog             | GET         | Get the list of blog post           |
-| /api/blog/:id/comment | POST        | Add a comment to a blog post        |
-| /api/blog/:id/image   | POST        | Add a image to a blog post          |
+| URL                     | HTTP Method | Description                         |
+|-------------------------|-------------|-------------------------------------|
+| /signup                 | POST        | User signup endpoint                |
+| /login                  | POST        | User login endpoint                 |
+| /blog                   | POST        | Create a new blog post              |
+| /blog                   | GET         | Get the list of blog post           |
+| /blog/:blogId           | GET         | Get blog data, comments and image   |
+| /blog/:blogId/comments  | POST        | Add a comment to a blog post        |
+| /upload/:blogId         | POST        | Add a image to a blog post          |
 
 ## Technologies Used
 | Tool/Technology    | Description                                                          |
@@ -62,4 +63,14 @@ The server will start, and you can access the API endpoints locally at http://lo
 ![image](https://github.com/shahin0503/assignment8/assets/144336102/965d71e8-06f9-4625-a5b0-c161c5f1cc26)
 
 ### Retrieve blogs
+![image](https://github.com/shahin0503/assignment8/assets/144336102/900d1be6-6abc-4c6b-ae50-7200a97e3303)
+![image](https://github.com/shahin0503/assignment8/assets/144336102/9c627c3f-e5a4-4c31-8962-82966965a8d0)
 
+### Add comments
+![image](https://github.com/shahin0503/assignment8/assets/144336102/ffb9dde5-2c7c-42c8-9837-50548cbc110d)
+![image](https://github.com/shahin0503/assignment8/assets/144336102/ce3ec670-ccca-4ffc-b578-9c16e3fd583a)
+
+
+### Add or Update image
+![image](https://github.com/shahin0503/assignment8/assets/144336102/8499905c-4473-4034-a597-35003965cf7f)
+![image](https://github.com/shahin0503/assignment8/assets/144336102/33085314-213b-44a8-a290-3124c2c8ea31)
